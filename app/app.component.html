@@ -1,0 +1,23 @@
+<h1>{{ title }}</h1>
+
+<form [formGroup]="todoFg">
+  <input type="text" formControlName="title" />
+  <input type="date" formControlName="date" />
+</form>
+
+<button [disabled]="todoFg?.invalid" (click)="onClickBtn()">Add</button>
+
+<hr />
+
+<table>
+  <tr>
+    <th>S No.</th>
+    <th>Name</th>
+    <th>Completion Date</th>
+  </tr>
+  <tr *ngFor="let item of todo$ | async; let i = index">
+    <td>{{ i + 1 }}.</td>
+    <td>{{ item?.title }}</td>
+    <td>{{ item?.completed | completed }}</td>
+  </tr>
+</table>
